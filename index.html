@@ -9,7 +9,7 @@
 <!-- Google Font -->
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
@@ -53,6 +53,14 @@
         PvP organizado e um ambiente saudável.
     </p>
 
+    <div class="card-grid">
+        <div class="card">🔥 PvP Small / Medium Scale</div>
+        <div class="card">🗡️ Ganks & Roaming</div>
+        <div class="card">🏹 Arenas & Hellgates</div>
+        <div class="card">🏰 PvE em Grupo</div>
+        <div class="card">💰 Fame Farm & Economia</div>
+        <div class="card">🧭 Mundo Aberto</div>
+    </div>
 
     <p class="note">
         ❌ Sem ZvZ e CTA obrigatórios.<br>
@@ -121,7 +129,7 @@
     <h2>🎬 Vídeos</h2>
 
     <video controls class="local-video">
-        <source src="../videos/clip.mp4" type="video/mp4">
+        <source src="videos/clip.mp4" type="video/mp4">
         Seu navegador não suporta vídeo.
     </video>
 </section>
@@ -226,7 +234,7 @@ carregarBaus();
 </div>
 
 <audio id="bg-music" loop>
-    <source src="../assets/audio/dairard.mp3" type="audio/mpeg">
+    <source src="audio/dairard.mp3" type="audio/mpeg">
     Seu navegador não suporta áudio.
 </audio>
 
@@ -235,22 +243,32 @@ const music = document.getElementById("bg-music");
 const btn = document.getElementById("music-btn");
 music.volume = 0.4;
 
+// Log para debug
+console.log("Audio source:", music.querySelector("source").src);
+
 btn.addEventListener("click", async () => {
     try {
         if (music.paused) {
             await music.play();
             btn.textContent = "⏸ Pausar Hino";
             btn.style.background = "#4a0000";
+            console.log("Música tocando!");
         } else {
             music.pause();
             btn.textContent = "▶ Tocar Hino";
             btn.style.background = "#8b0000";
+            console.log("Música pausada");
         }
     } catch (err) {
         console.error("Erro ao tocar:", err);
-        alert("Erro ao carregar o áudio. Verifique o console (F12) para detalhes.");
+        alert("Erro: " + err.message);
     }
 });
+
+// Verificar se o arquivo existe
+fetch("audio/dairard.mp3")
+    .then(r => console.log("Arquivo encontrado:", r.status))
+    .catch(e => console.error("Arquivo não encontrado:", e));
 </script>
 
 </body>
