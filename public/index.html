@@ -75,24 +75,53 @@
         <div class="card">
             <h3>👑 Líder</h3>
             <p><strong>xxRAGNARxxx</strong></p>
-			<p>Responsável por decisões estratégicas e representações externas da guilda:</p> <ul> <li>Avaliar propostas de alianças</li> <li>Avaliar propostas de callers para DG Avalon e ZvZ</li> <li>Avaliar rent de território</li> <li>Avaliar colocação de HO em mapas</li> <li>Avaliar rent de World Boss</li> <li>Garantir respeito entre toda staff e membros</li> </ul>
+            <p>Responsável por decisões estratégicas e representações externas da guilda:</p>
+            <ul>
+                <li>Avaliar propostas de alianças</li>
+                <li>Avaliar propostas de callers para DG Avalon e ZvZ</li>
+                <li>Avaliar rent de território</li>
+                <li>Avaliar colocação de HO em mapas</li>
+                <li>Avaliar rent de World Boss</li>
+                <li>Garantir respeito entre toda staff e membros</li>
+            </ul>
         </div>
 
         <div class="card">
             <h3>⚔️ Sub-Líder</h3>
             <p>SLZXP<br>Kimeruz</p>
-			<p>Funções:</p> <ul> <li>Resolver problemas internos entre a staff</li> <li>Garantir o cumprimento das funções dos cargos inferiores</li> <li>Ajudar com problemas técnicos do Discord</li> <li>Auxiliar na criação de eventos</li> <li>Planejar atualizações da guilda</li> </ul>
+            <p>Funções:</p>
+            <ul>
+                <li>Resolver problemas internos entre a staff</li>
+                <li>Garantir o cumprimento das funções dos cargos inferiores</li>
+                <li>Ajudar com problemas técnicos do Discord</li>
+                <li>Auxiliar na criação de eventos</li>
+                <li>Planejar atualizações da guilda</li>
+            </ul>
         </div>
 
         <div class="card">
             <h3>🛡️ Moderador</h3>
             <p>Ezlizz</p>
-			<p>Funções:</p> <ul> <li>Resolver conflitos sérios</li> <li>Aplicar avisos, expulsões e banimentos</li> <li>Registrar motivos no chat #admin-chat</li> <li>Manter blacklist atualizada</li> <li>Cobrar e confirmar multas</li> </ul>
+            <p>Funções:</p>
+            <ul>
+                <li>Resolver conflitos sérios</li>
+                <li>Aplicar avisos, expulsões e banimentos</li>
+                <li>Registrar motivos no chat #admin-chat</li>
+                <li>Manter blacklist atualizada</li>
+                <li>Cobrar e confirmar multas</li>
+            </ul>
         </div>
-		        <div class="card">
+
+        <div class="card">
             <h3>🛡️ Recutador</h3>
             <p>Thalisson69<br>LordMysteriuss<br>K1ra014</p>
-			<p>Funções:</p> <ul> <li>Recrutar novos jogadores</li> <li>Explicar regras e funcionamento da guilda</li> <li>Repassar informações obrigatórias</li> </ul>
+            <p>Funções:</p>
+            <ul>
+                <li>Recrutar novos jogadores</li>
+                <li>Explicar regras e funcionamento da guilda</li>
+                <li>Repassar informações obrigatórias</li>
+            </ul>
+        </div>
     </div>
 </section>
 
@@ -124,12 +153,9 @@
     <h2>💰 Vendas de Baú</h2>
     <p>Publique o print do baú e seu Discord para contato.</p>
 
-    <!-- FORMULÁRIO CORRIGIDO PARA O BACKEND -->
     <form id="vendaForm" class="card venda-form" enctype="multipart/form-data">
         <input type="text" name="discord" placeholder="Seu Discord (ex: Ragnar#0001)" required>
-
         <input type="file" name="print" accept="image/*" required>
-
         <button class="btn-primary" type="submit">
             Publicar Baú
         </button>
@@ -138,60 +164,8 @@
     <hr>
 
     <h3>📜 Últimos Baús Publicados</h3>
-
     <div id="bauList" class="card-grid"></div>
 </section>
-
-<script>
-// Enviar formulario para o backend
-document.getElementById("vendaForm").addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    const formData = new FormData(e.target);
-
-    const res = await fetch("/vender", {
-        method: "POST",
-        body: formData
-    });
-
-    const json = await res.json();
-
-    if (json.ok) {
-        alert("Baú publicado com sucesso!");
-        carregarBaus();
-        e.target.reset();
-    } else {
-        alert("Erro ao publicar!");
-    }
-});
-
-// Carregar os baús do banco
-async function carregarBaus() {
-    const res = await fetch("/vendas");
-    const vendas = await res.json();
-
-    const area = document.getElementById("bauList");
-    area.innerHTML = "";
-
-    vendas.forEach(v => {
-        area.innerHTML += `
-            <div class="card">
-                <img src="${v.imagem}" style="width: 100%; border-radius: 8px;">
-                <p><b>Discord:</b> ${v.discord}</p>
-
-                <a class="btn-secondary" href="https://discord.com/users/${v.discord}" target="_blank">
-                    Chamar no Discord
-                </a>
-            </div>
-        `;
-    });
-}
-
-// Carrega vendas ao abrir aba
-carregarBaus();
-</script>
-
-
 
 <section id="discord" class="section tab-section">
     <h2>🔥 Entre para a DieHard</h2>
@@ -216,7 +190,67 @@ function showTab(id) {
 }
 </script>
 
+<script>
+document.getElementById("vendaForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const res = await fetch("/vender", { method: "POST", body: formData });
+    const json = await res.json();
+    if (json.ok) {
+        alert("Baú publicado com sucesso!");
+        carregarBaus();
+        e.target.reset();
+    } else {
+        alert("Erro ao publicar!");
+    }
+});
 
+async function carregarBaus() {
+    const res = await fetch("/vendas");
+    const vendas = await res.json();
+    const area = document.getElementById("bauList");
+    area.innerHTML = "";
+    vendas.forEach(v => {
+        area.innerHTML += `
+            <div class="card">
+                <img src="${v.imagem}" style="width: 100%; border-radius: 8px;">
+                <p><b>Discord:</b> ${v.discord}</p>
+                <a class="btn-secondary" href="https://discord.com/users/${v.discord}" target="_blank">
+                    Chamar no Discord
+                </a>
+            </div>
+        `;
+    });
+}
+carregarBaus();
+</script>
+
+<!-- PLAYER DE MÚSICA -->
+<div style="position:fixed;bottom:20px;right:20px;z-index:9999;">
+    <button id="music-btn" style="background:#8b0000;color:white;border:none;padding:12px 20px;border-radius:8px;cursor:pointer;">
+        ▶ Tocar Hino
+    </button>
+</div>
+
+<audio id="bg-music" loop>
+    <source src="assets/audio/dairard.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const music = document.getElementById("bg-music");
+const btn = document.getElementById("music-btn");
+music.volume = 0.4;
+
+btn.addEventListener("click", () => {
+    if (music.paused) {
+        music.play();
+        btn.textContent = "⏸ Pausar Hino";
+    } else {
+        music.pause();
+        btn.textContent = "▶ Tocar Hino";
+    }
+});
+</script>
 
 </body>
 </html>
