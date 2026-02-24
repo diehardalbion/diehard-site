@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Guild DieHard | Albion Online</title>
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<!-- Discord Widget -->
+<div id="discordWidget" class="discord-widget">
+    <iframe 
+        src="https://discord.com/widget?id=1453482483449598064&theme=dark"
+        allowtransparency="true"
+        sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts">
+    </iframe>
+</div>
+
+<header class="hero">
+    <div class="hero-overlay"></div>
+
+    <h1>Guild DieHard</h1>
+    <p>Forjados na persistência. Unidos pela evolução.</p>
+
+    <a class="btn-primary" href="https://discord.gg/55tKDRpbwS" target="_blank">
+        Entrar no Discord
+    </a>
+</header>
+
+<nav class="menu">
+    <a onclick="showTab('info')">Informações</a>
+    <a onclick="showTab('staff')">Staff</a>
+    <a onclick="showTab('videos')">Vídeos</a>
+    <a onclick="showTab('lives')">Lives</a>
+    <a onclick="showTab('vendas')">Vendas de Baú</a>
+    <a onclick="showTab('discord')">Discord</a>
+</nav>
+
+<main>
+
+<section id="info" class="section tab-section active">
+    <h2>🛡️ DIE HARD</h2>
+
+    <p class="highlight">
+        Somos uma guilda brasileira de Albion Online focada em evolução coletiva,
+        PvP organizado e um ambiente saudável.
+    </p>
+
+    <div class="card-grid">
+        <div class="card">🔥 PvP Small / Medium Scale</div>
+        <div class="card">🗡️ Ganks & Roaming</div>
+        <div class="card">🏹 Arenas & Hellgates</div>
+        <div class="card">🏰 PvE em Grupo</div>
+        <div class="card">💰 Fame Farm & Economia</div>
+        <div class="card">🧭 Mundo Aberto</div>
+    </div>
+
+    <p class="note">
+        ❌ Sem ZvZ e CTA obrigatórios.  
+        ✅ Jogo deve ser desafiador, mas também divertido.
+    </p>
+</section>
+
+<section id="staff" class="section tab-section">
+    <h2>👥 Staff</h2>
+
+    <div class="card-grid">
+        <div class="card">
+            <h3>👑 Líder</h3>
+            <p><strong>xxRAGNARxxx</strong></p>
+            <p>Responsável por decisões estratégicas e representações externas da guilda:</p>
+            <ul>
+                <li>Avaliar propostas de alianças</li>
+                <li>Avaliar propostas de callers para DG Avalon e ZvZ</li>
+                <li>Avaliar rent de território</li>
+                <li>Avaliar colocação de HO em mapas</li>
+                <li>Avaliar rent de World Boss</li>
+                <li>Garantir respeito entre toda staff e membros</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>⚔️ Sub-Líder</h3>
+            <p>SLZXP<br>Kimeruz</p>
+            <p>Funções:</p>
+            <ul>
+                <li>Resolver problemas internos entre a staff</li>
+                <li>Garantir o cumprimento das funções dos cargos inferiores</li>
+                <li>Ajudar com problemas técnicos do Discord</li>
+                <li>Auxiliar na criação de eventos</li>
+                <li>Planejar atualizações da guilda</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>🛡️ Moderador</h3>
+            <p>Ezlizz</p>
+            <p>Funções:</p>
+            <ul>
+                <li>Resolver conflitos sérios</li>
+                <li>Aplicar avisos, expulsões e banimentos</li>
+                <li>Registrar motivos no chat #admin-chat</li>
+                <li>Manter blacklist atualizada</li>
+                <li>Cobrar e confirmar multas</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>🛡️ Recutador</h3>
+            <p>Thalisson69<br>LordMysteriuss<br>K1ra014</p>
+            <p>Funções:</p>
+            <ul>
+                <li>Recrutar novos jogadores</li>
+                <li>Explicar regras e funcionamento da guilda</li>
+                <li>Repassar informações obrigatórias</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section id="videos" class="section tab-section">
+    <h2>🎬 Vídeos</h2>
+
+    <video controls class="local-video">
+        <source src="videos/clip.mp4" type="video/mp4">
+    </video>
+</section>
+
+<section id="lives" class="section tab-section">
+    <h2>🎥 Lives</h2>
+
+    <div class="card-grid">
+        <div class="card">
+            <h3>Twitch — Ragnar</h3>
+            <a class="btn-secondary" href="#" target="_blank">Assistir</a>
+        </div>
+
+        <div class="card">
+            <h3>YouTube — DieHard</h3>
+            <a class="btn-secondary" href="#" target="_blank">Ver Canal</a>
+        </div>
+    </div>
+</section>
+
+<section id="vendas" class="section tab-section">
+    <h2>💰 Vendas de Baú</h2>
+    <p>Publique o print do baú e seu Discord para contato.</p>
+
+    <form id="vendaForm" class="card venda-form" enctype="multipart/form-data">
+        <input type="text" name="discord" placeholder="Seu Discord (ex: Ragnar#0001)" required>
+        <input type="file" name="print" accept="image/*" required>
+        <button class="btn-primary" type="submit">
+            Publicar Baú
+        </button>
+    </form>
+
+    <hr>
+
+    <h3>📜 Últimos Baús Publicados</h3>
+    <div id="bauList" class="card-grid"></div>
+</section>
+
+<section id="discord" class="section tab-section">
+    <h2>🔥 Entre para a DieHard</h2>
+    <p>Comunidade ativa, organizada e sem toxicidade.</p>
+
+    <a class="btn-primary" href="https://discord.gg/55tKDRpbwS" target="_blank">
+        Entrar no Discord
+    </a>
+</section>
+
+</main>
+
+<footer>
+    <p>© DieHard Guild — Feito por <strong>SLZXP</strong></p>
+</footer>
+
+<script>
+function showTab(id) {
+    document.querySelectorAll('.tab-section').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    window.scrollTo({ top: 300, behavior: 'smooth' });
+}
+</script>
+
+<script>
+document.getElementById("vendaForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const res = await fetch("/vender", { method: "POST", body: formData });
+    const json = await res.json();
+    if (json.ok) {
+        alert("Baú publicado com sucesso!");
+        carregarBaus();
+        e.target.reset();
+    } else {
+        alert("Erro ao publicar!");
+    }
+});
+
+async function carregarBaus() {
+    const res = await fetch("/vendas");
+    const vendas = await res.json();
+    const area = document.getElementById("bauList");
+    area.innerHTML = "";
+    vendas.forEach(v => {
+        area.innerHTML += `
+            <div class="card">
+                <img src="${v.imagem}" style="width: 100%; border-radius: 8px;">
+                <p><b>Discord:</b> ${v.discord}</p>
+                <a class="btn-secondary" href="https://discord.com/users/${v.discord}" target="_blank">
+                    Chamar no Discord
+                </a>
+            </div>
+        `;
+    });
+}
+carregarBaus();
+</script>
+
+<!-- PLAYER DE MÚSICA -->
+<div style="position:fixed;bottom:20px;right:20px;z-index:9999;">
+    <button id="music-btn" style="background:#8b0000;color:white;border:none;padding:12px 20px;border-radius:8px;cursor:pointer;">
+        ▶ Tocar Hino
+    </button>
+</div>
+
+<audio id="bg-music" loop>
+    <source src="assets/audio/dairard.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const music = document.getElementById("bg-music");
+const btn = document.getElementById("music-btn");
+music.volume = 0.4;
+
+btn.addEventListener("click", () => {
+    if (music.paused) {
+        music.play();
+        btn.textContent = "⏸ Pausar Hino";
+    } else {
+        music.pause();
+        btn.textContent = "▶ Tocar Hino";
+    }
+});
+</script>
+
+</body>
+</html>

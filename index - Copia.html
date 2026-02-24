@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guild DieHard - Albion Online</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial;
+            color: white;
+            background: url('assets/img/fundo.gif') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        header {
+            min-height: 320px;
+            background: url('assets/img/banner.jpg') no-repeat center center;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            text-align: center;
+        }
+
+        header h1 { 
+            font-size: 60px; 
+            text-shadow: 2px 2px 10px black; 
+        }
+
+        .menu {
+    position: relative;
+    padding: 18px;
+    display: flex;
+    justify-content: center;
+    gap: 35px;
+    background: linear-gradient(270deg, #050505, #111, #050505);
+    background-size: 400% 400%;
+    animation: menuGradient 10s ease infinite;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.8);
+    overflow: hidden;
+}
+
+/* Gradiente animado */
+@keyframes menuGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Linha dourada animada */
+.menu::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: -100%;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        #FFD700,
+        transparent
+    );
+    animation: goldLine 3.5s linear infinite;
+}
+
+@keyframes goldLine {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+/* Links */
+.menu a {
+    position: relative;
+    padding: 10px 18px;
+    border: 1px solid rgba(255, 215, 0, 0.35);
+    border-radius: 8px;
+    color: #f5f5f5;
+    text-decoration: none;
+    font-size: 18px;
+    letter-spacing: 1px;
+    transition: 
+        color 0.3s,
+        box-shadow 0.3s,
+        border-color 0.3s,
+        transform 0.2s;
+}
+
+/* Hover */
+.menu a:hover {
+    color: #FFD700;
+    border-color: #FFD700;
+    box-shadow: 
+        0 0 10px rgba(255, 215, 0, 0.6),
+        inset 0 0 10px rgba(255, 215, 0, 0.3);
+    transform: translateY(-2px);
+}
+/* Relâmpago preenchendo o botão */
+.menu a::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 8px;
+    background:
+        linear-gradient(
+            120deg,
+            rgba(255,255,255,0) 30%,
+            rgba(255,255,255,0.9) 45%,
+            #FFD700 50%,
+            rgba(255,255,255,0.9) 55%,
+            rgba(255,255,255,0) 70%
+        );
+    opacity: 0;
+    filter: blur(1px) drop-shadow(0 0 18px #FFD700);
+}
+
+/* Flash externo */
+.menu a::before {
+    content: "";
+    position: absolute;
+    inset: -6px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.4);
+    opacity: 0;
+    z-index: -1;
+}
+
+/* Hover */
+.menu a:hover::after {
+    animation: lightningFill 0.9s steps(1) infinite;
+}
+
+.menu a:hover::before {
+    animation: flashFill 0.9s steps(1) infinite;
+}
+
+/* Animações */
+@keyframes lightningFill {
+    0%   { opacity: 0; }
+    10%  { opacity: 1; }
+    15%  { opacity: 0; }
+    35%  { opacity: 1; }
+    40%  { opacity: 0; }
+    100% { opacity: 0; }
+}
+
+@keyframes flashFill {
+    0%   { opacity: 0; }
+    10%  { opacity: 0.7; }
+    15%  { opacity: 0; }
+    35%  { opacity: 0.5; }
+    40%  { opacity: 0; }
+    100% { opacity: 0; }
+}
+
+
+
+        .section { 
+            padding: 40px; 
+            max-width: 900px; 
+            margin: auto; 
+        }
+
+        .staff-list, .video-list { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); 
+            gap: 20px; 
+        }
+
+        .card { 
+            background: #1a1a1a; 
+            padding: 20px; 
+            border-radius: 8px; 
+            text-align: center; 
+        }
+
+        iframe { 
+            width: 100%; 
+            height: 200px; 
+            border-radius: 8px; 
+        }
+
+        .discord-btn { 
+            padding: 15px 25px; 
+            background: #5865F2; 
+            color: white; 
+            border-radius: 6px; 
+            text-decoration: none; 
+            font-size: 20px; 
+        }
+
+        .discord-widget {
+            position: fixed;
+            top: 120px;
+            left: 20px;
+            width: 260px;
+            height: 460px;
+            background: #111;
+            border-radius: 10px;
+            padding: 10px;
+            box-shadow: 0 0 15px #000;
+            overflow: hidden;
+            z-index: 9999;
+        }
+
+        .discord-widget iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .discord-widget {
+                position: static;
+                width: 100%;
+                height: 380px;
+                margin: 20px auto;
+            }
+        }
+
+        /* === VÍDEO LOCAL COM BORDA === */
+        .local-video {
+            width: 100%;
+            max-width: 640px;           /* Tamanho máximo do player */
+            height: auto;
+            border: 5px solid #FFD700;  /* Borda dourada */
+            border-radius: 15px;        /* Cantos arredondados */
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.7); /* Sombra dourada */
+            transition: transform 0.3s, box-shadow 0.3s;  /* Hover suave */
+        }
+
+        .local-video:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 35px rgba(255, 215, 0, 1);
+        }
+    </style>
+</head>
+<body>
+
+<!-- PAINEL LATERAL DO DISCORD -->
+<div id="discordWidget" class="discord-widget" style="display:none;">
+    <iframe 
+        src="https://discord.com/widget?id=1453482483449598064&theme=dark"
+        allowtransparency="true"
+        frameborder="0"
+        sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts">
+    </iframe>
+</div>
+
+<header>
+    <h1>Guild DieHard</h1>
+    <a class="discord-btn" href="https://discord.gg/55tKDRpbwS" target="_blank">Entrar no Discord</a>
+</header>
+
+<nav class="menu">
+    <a href="#" onclick="showTab('info')">Informações</a>
+    <a href="#" onclick="showTab('staff')">Staff</a>
+    <a href="#" onclick="showTab('videos')">Vídeos</a>
+    <a href="#" onclick="showTab('lives')">Lives</a>
+    <a href="#" onclick="showTab('vendas')">Vendas de Baú</a>
+    <a href="#" onclick="showTab('discord')">Discord</a>
+</nav>
+
+<!-- ABA: Informações -->
+<section id="info" class="section tab-section" style="display:block;">
+
+    <h2>🛡️ DIE HARD</h2>
+
+    <p><b>Forjados na persistência. Unidos pela evolução.</b></p>
+
+    <p>
+        A Die Hard é uma guilda em constante crescimento dentro de Albion Online, 
+        formada por jogadores que acreditam no progresso coletivo, 
+        na lealdade e na vontade de evoluir todos os dias.
+    </p>
+
+    <p>
+        Nosso foco é aproveitar quase todo o conteúdo que Albion oferece, 
+        sempre com organização, companheirismo e diversão. 
+        Aqui, ninguém fica para trás — crescemos juntos, aprendemos juntos e conquistamos juntos.
+    </p>
+
+    <h3>⚔️ O que fazemos</h3>
+
+    <ul>
+        <li>🔥 PvP em Small / Medium Scale</li>
+        <li>🗡️ Ganks e Roaming</li>
+        <li>🏹 Arenas e Hellgates</li>
+        <li>🏰 PvE em grupo</li>
+        <li>💰 Fame Farm & Economia</li>
+        <li>🧭 Conteúdos de mundo aberto</li>
+    </ul>
+
+    <p>
+        ❌ Não participamos de ZvZ e CTA obrigatórios — acreditamos que o jogo deve ser desafiante, 
+        mas também divertido e sustentável para todos.
+    </p>
+
+    <h3>🤝 Nossa filosofia</h3>
+
+    <ul>
+        <li>Ambiente respeitoso e sem toxicidade</li>
+        <li>Ajuda mútua entre membros</li>
+        <li>Espaço para jogadores novos e experientes</li>
+        <li>Evolução individual com foco no crescimento da guilda</li>
+    </ul>
+
+    <p>
+        Na Die Hard, o comprometimento vale mais do que números, 
+        e a atitude vale mais do que IP.
+    </p>
+
+    <h3>🧠 Nosso objetivo</h3>
+
+    <p>
+        Construir uma guilda sólida, reconhecida pela união, pela consistência 
+        e pela presença ativa no mundo de Albion — sem pressões excessivas, 
+        sem obrigações forçadas, mas com vontade real de jogar e evoluir.
+    </p>
+
+    <h2>💀 DIE HARD</h2>
+    <p><b>Não é só uma guilda.<br>É uma mentalidade.</b></p>
+
+</section>
+
+<!-- ABA: Staff --> <section id="staff" class="section tab-section" style="display:none;"> <h2>👥 STAFF — DIE HARD</h2> <p>Aqui você poderá ver todas as funções de cada membro da staff da guilda.</p>  <p> A staff da Die Hard é responsável por manter a organização, o crescimento e o bom ambiente da guilda, garantindo respeito, justiça e suporte para todos os membros tanto no jogo quanto no Discord. </p> <hr> <h3>👑 Liderança</h3> <h4>👑 Líder</h4> <p><b>xxRAGNARxxx</b></p> <p>Responsável por decisões estratégicas e representações externas da guilda:</p> <ul> <li>Avaliar propostas de alianças</li> <li>Avaliar propostas de callers para DG Avalon e ZvZ</li> <li>Avaliar rent de território</li> <li>Avaliar colocação de HO em mapas</li> <li>Avaliar rent de World Boss</li> <li>Garantir respeito entre toda staff e membros</li> </ul> <hr> <h3>⚔️ Sub-Líderes</h3> <p><b>SLZXP</b><br> <b>Kimeruz</b></p> <p>Funções:</p> <ul> <li>Resolver problemas internos entre a staff</li> <li>Garantir o cumprimento das funções dos cargos inferiores</li> <li>Ajudar com problemas técnicos do Discord</li> <li>Auxiliar na criação de eventos</li> <li>Planejar atualizações da guilda</li> </ul> <hr> <h3>🛡️ Moderação</h3> <h4>🔨 Moderador</h4> <p><b>Ezlizz</b></p> <ul> <li>Resolver conflitos sérios</li> <li>Aplicar avisos, expulsões e banimentos</li> <li>Registrar motivos no chat #admin-chat</li> <li>Manter blacklist atualizada</li> <li>Cobrar e confirmar multas</li> </ul> <h4>📌 Regras importantes:</h4> <ul> <li>Atraso de multa acima de 7 dias → aviso + expulsão</li> <li>Para retornar, todas as multas devem ser pagas</li> </ul> <hr> <h3>🎯 Recrutamento</h3> <h4>📢 Recrutadores</h4> <p><b>Thalisson69</b><br> <b>LordMysteriuss</b><br> <b>K1ra014</b></p> <ul> <li>Recrutar novos jogadores</li> <li>Explicar regras e funcionamento da guilda</li> <li>Repassar informações obrigatórias</li> </ul> <p>❌ Não temos taxa semanal</p> <p>✅ Apenas 10% do chão para investimentos da guilda</p> <p>❌ Sem obrigações forçadas</p> <p>✅ Único requisito: ser ativo no Discord</p> <p><b>🎯 Foco total em PvE</b></p> </section>
+
+
+<!-- ABA: Vídeos -->
+<section id="videos" class="section tab-section" style="display:none;">
+    <h2>Vídeos da Guild</h2>
+    <div class="video-list">
+        <video controls class="local-video">
+            <source src="videos/clip.mp4" type="video/mp4">
+            Seu navegador não suporta vídeos HTML5.
+        </video>
+    </div>
+</section>
+
+<!-- ABA: Lives -->
+<section id="lives" class="section tab-section" style="display:none;">
+    <h2>🎥 Lives da Guild</h2>
+
+    <p>Acompanhe as lives oficiais da DieHard, eventos, ganks, PvP e conteúdos ao vivo.</p>
+
+    <div class="staff-list">
+
+        <div class="card">
+            <h3>🎮 Twitch — Ragnar</h3>
+            <p>PvP • Ganks • Small Scale</p>
+            <a href="https://twitch.tv/SEUCANAL" target="_blank" class="discord-btn">
+                Assistir Live
+            </a>
+        </div>
+
+        <div class="card">
+            <h3>🎮 Twitch — SLZXP</h3>
+            <p>Roaming • PvE</p>
+            <a href="https://twitch.tv/slzxp" target="_blank" class="discord-btn">
+                Assistir Live
+            </a>
+        </div>
+
+        <div class="card">
+            <h3>📺 YouTube — DieHard</h3>
+            <p>Eventos • Highlights</p>
+            <a href="https://www.youtube.com/@DieHard-i5q" target="_blank" class="discord-btn">
+                Ver Canal
+            </a>
+        </div>
+
+    </div>
+
+    <p style="margin-top:20px;">
+        🔔 Fique ligado no Discord para saber quando alguém estiver ao vivo!
+    </p>
+</section>
+
+<section id="vendas" class="section tab-section" style="display:none;">
+
+    <h2>💰 Vendas de Baú</h2>
+    <p>Poste o print do seu baú e seu Discord para negociação.</p>
+
+    <!-- FORMULÁRIO -->
+    <div class="card">
+        <h3>📤 Anunciar Baú</h3>
+
+        <input type="text" id="discordName"
+            placeholder="Seu Discord (ex: Ragnar#0001)"
+            class="input">
+
+        <input type="text" id="discordLink"
+            placeholder="Link do seu Discord (opcional)"
+            class="input">
+
+        <input type="file" id="bauImage" accept="image/*">
+
+        <button class="discord-btn" onclick="addBau()">Publicar Baú</button>
+    </div>
+
+    <hr>
+
+    <!-- LISTA DE BAÚS -->
+    <div id="bauList" class="staff-list"></div>
+
+</section>
+
+
+<!-- ABA: Discord -->
+<section id="discord" class="section tab-section" style="display:none;">
+
+    <h2>🔥 ENTRE PARA A DIEHARD — A IRMANDADE QUE NÃO FOGE DA LUTA 🔥</h2>
+
+    <p>No mundo brutal de <b>Albion</b>, onde apenas os fortes sobrevivem, existe uma guilda que não teme desafios:</p>
+
+    <h3><b>⚔️ DIEHARD ⚔️</b></h3>
+
+    <p>Se você busca uma comunidade ativa, organizada e leal — então <b>seu lugar é aqui</b>.</p>
+
+    <hr>
+
+    <h3>💬 Por que entrar no nosso Discord?</h3>
+
+    <ul>
+        <li>💠 Organização impecável</li>
+        <li>💠 Eventos diários</li>
+        <li>💠 Guias e builds</li>
+        <li>💠 Comunidade ativa</li>
+        <li>💠 Zero toxicidade</li>
+    </ul>
+
+    <hr>
+
+    <h3>⚡ Junte-se à DieHard agora mesmo!</h3>
+    <p><b>Clique no botão abaixo e venha lutar ao nosso lado!</b></p>
+
+    <a class="discord-btn" href="https://discord.gg/55tKDRpbwS" target="_blank">🚀 Entrar no Discord</a>
+
+</section>
+
+<script>
+function showTab(tabId) {
+    document.querySelectorAll('.tab-section').forEach(section => {
+        section.style.display = "none";
+    });
+    document.getElementById(tabId).style.display = "block";
+
+    if (tabId === "info" || tabId === "discord") {
+        document.getElementById("discordWidget").style.display = "block";
+    } else {
+        document.getElementById("discordWidget").style.display = "none";
+    }
+
+    window.scrollTo({ top: 350, behavior: 'smooth' });
+}
+
+// Widget Discord aparece ao abrir
+document.getElementById("discordWidget").style.display = "block";
+</script>
+
+<script>
+function addBau() {
+    const discordName = document.getElementById("discordName").value.trim();
+    const discordLink = document.getElementById("discordLink").value.trim();
+    const imageInput = document.getElementById("bauImage");
+
+    if (!discordName || imageInput.files.length === 0) {
+        alert("Preencha o Discord e envie o print do baú.");
+        return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = function () {
+        const bau = document.createElement("div");
+        bau.className = "bau-card";
+
+        bau.innerHTML = `
+            <img src="${reader.result}">
+            <p><b>Vendedor:</b> ${discordName}</p>
+            <a class="discord-btn" target="_blank"
+               href="${discordLink || 'https://discord.com/app'}">
+               💬 Falar no Discord
+            </a>
+        `;
+
+        document.getElementById("bauList").appendChild(bau);
+    };
+
+    reader.readAsDataURL(imageInput.files[0]);
+
+    // Limpa formulário
+    document.getElementById("discordName").value = "";
+    document.getElementById("discordLink").value = "";
+    imageInput.value = "";
+}
+</script>
+
+<footer class="footer">
+    <p>Feito por <strong>SLZXP (Angelo)</strong></p>
+</footer>
+
+
+</body>
+</html>
