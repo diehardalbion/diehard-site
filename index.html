@@ -9,7 +9,7 @@
 <!-- Google Font -->
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body>
@@ -63,7 +63,7 @@
     </div>
 
     <p class="note">
-        ❌ Sem ZvZ e CTA obrigatórios.  
+        ❌ Sem ZvZ e CTA obrigatórios.<br>
         ✅ Jogo deve ser desafiador, mas também divertido.
     </p>
 </section>
@@ -113,7 +113,7 @@
         </div>
 
         <div class="card">
-            <h3>🛡️ Recutador</h3>
+            <h3>🛡️ Recrutador</h3>
             <p>Thalisson69<br>LordMysteriuss<br>K1ra014</p>
             <p>Funções:</p>
             <ul>
@@ -129,7 +129,8 @@
     <h2>🎬 Vídeos</h2>
 
     <video controls class="local-video">
-        <source src="videos/clip.mp4" type="video/mp4">
+        <source src="../videos/clip.mp4" type="video/mp4">
+        Seu navegador não suporta vídeo.
     </video>
 </section>
 
@@ -227,13 +228,14 @@ carregarBaus();
 
 <!-- PLAYER DE MÚSICA -->
 <div style="position:fixed;bottom:20px;right:20px;z-index:9999;">
-    <button id="music-btn" style="background:#8b0000;color:white;border:none;padding:12px 20px;border-radius:8px;cursor:pointer;">
+    <button id="music-btn" style="background:#8b0000;color:white;border:none;padding:12px 20px;border-radius:8px;cursor:pointer;font-family:Inter,sans-serif;font-weight:600;box-shadow:0 4px 6px rgba(0,0,0,0.3);transition:all 0.3s;">
         ▶ Tocar Hino
     </button>
 </div>
 
 <audio id="bg-music" loop>
-    <source src="assets/audio/dairard.mp3" type="audio/mpeg">
+    <source src="../assets/audio/dairard.mp3" type="audio/mpeg">
+    Seu navegador não suporta áudio.
 </audio>
 
 <script>
@@ -241,13 +243,20 @@ const music = document.getElementById("bg-music");
 const btn = document.getElementById("music-btn");
 music.volume = 0.4;
 
-btn.addEventListener("click", () => {
-    if (music.paused) {
-        music.play();
-        btn.textContent = "⏸ Pausar Hino";
-    } else {
-        music.pause();
-        btn.textContent = "▶ Tocar Hino";
+btn.addEventListener("click", async () => {
+    try {
+        if (music.paused) {
+            await music.play();
+            btn.textContent = "⏸ Pausar Hino";
+            btn.style.background = "#4a0000";
+        } else {
+            music.pause();
+            btn.textContent = "▶ Tocar Hino";
+            btn.style.background = "#8b0000";
+        }
+    } catch (err) {
+        console.error("Erro ao tocar:", err);
+        alert("Erro ao carregar o áudio. Verifique o console (F12) para detalhes.");
     }
 });
 </script>
