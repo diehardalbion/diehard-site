@@ -1,275 +1,242 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Meu Mamute Favorito — Albion Online Guild</title>
 
-<title>Guild DieHard | Albion Online</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
 
-<!-- Google Font -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
 
-<!-- Discord Widget -->
-<div id="discordWidget" class="discord-widget">
-    <iframe 
-        src="https://discord.com/widget?id=1453482483449598064&theme=dark"
-        allowtransparency="true"
-        sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts">
-    </iframe>
-</div>
+  <!-- ═══════════════════════════ CURSOR GLOW ═══════════════════════════ -->
+  <div class="cursor-glow" id="cursorGlow"></div>
 
-<header class="hero">
-    <div class="hero-overlay"></div>
+  <!-- ═══════════════════════════ PARTICLE CANVAS ═══════════════════════════ -->
+  <canvas id="particleCanvas"></canvas>
 
-    <h1>Guild DieHard</h1>
-    <p>Forjados na persistência. Unidos pela evolução.</p>
+  <!-- ═══════════════════════════ NAVBAR ═══════════════════════════ -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo">
+        <span class="logo-rune">⟁</span>
+        <span class="logo-text">Meu Mamute Favorito</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#leadership">Liderança</a></li>
+        <li><a href="#activities">Atividades</a></li>
+        <li><a href="#philosophy">Filosofia</a></li>
+        <li><a href="#differentials">Diferenciais</a></li>
+        <li><a href="https://discord.gg/VEYfyagztN" target="_blank" rel="noopener" class="nav-cta">Discord</a></li>
+      </ul>
+      <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <!-- Mobile drawer -->
+    <ul class="nav-mobile" id="navMobile">
+      <li><a href="#leadership">Liderança</a></li>
+      <li><a href="#activities">Atividades</a></li>
+      <li><a href="#philosophy">Filosofia</a></li>
+      <li><a href="#differentials">Diferenciais</a></li>
+      <li><a href="https://discord.gg/VEYfyagztN" target="_blank" rel="noopener">Discord</a></li>
+    </ul>
+  </nav>
 
-    <a class="btn-primary" href="https://discord.gg/55tKDRpbwS" target="_blank">
-        Entrar no Discord
-    </a>
-</header>
-
-<nav class="menu">
-    <a onclick="showTab('info')">Informações</a>
-    <a onclick="showTab('staff')">Staff</a>
-    <a onclick="showTab('videos')">Vídeos</a>
-    <a onclick="showTab('lives')">Lives</a>
-    <a onclick="showTab('vendas')">Vendas de Baú</a>
-    <a onclick="showTab('discord')">Discord</a>
-</nav>
-
-<main>
-
-<section id="info" class="section tab-section active">
-    <h2>🛡️ DIE HARD</h2>
-
-    <p class="highlight">
-        Somos uma guilda brasileira de Albion Online focada em evolução coletiva,
-        PvP organizado e um ambiente saudável.
-    </p>
-
-    <div class="card-grid">
-        <div class="card">🔥 PvP Small / Medium Scale</div>
-        <div class="card">🗡️ Ganks & Roaming</div>
-        <div class="card">🏹 Arenas & Hellgates</div>
-        <div class="card">🏰 PvE em Grupo</div>
-        <div class="card">💰 Fame Farm & Economia</div>
-        <div class="card">🧭 Mundo Aberto</div>
+  <!-- ═══════════════════════════ HERO ═══════════════════════════ -->
+  <section class="hero" id="hero">
+    <!-- Parallax layers -->
+    <div class="hero-bg parallax-bg" data-speed="0.3">
+      <img src="mamu.png" alt="Mamute em chamas — Albion Online" class="hero-img" />
+      <div class="hero-overlay"></div>
     </div>
 
-    <p class="note">
-        ❌ Sem ZvZ e CTA obrigatórios.<br>
-        ✅ Jogo deve ser desafiador, mas também divertido.
-    </p>
-</section>
+    <!-- Rune ring decoration -->
+    <div class="rune-ring"></div>
 
-<section id="staff" class="section tab-section">
-    <h2>👥 Staff</h2>
-
-    <div class="card-grid">
-        <div class="card">
-            <h3>👑 Líder</h3>
-            <p><strong>xxRAGNARxxx</strong></p>
-            <p>Responsável por decisões estratégicas e representações externas da guilda:</p>
-            <ul>
-                <li>Avaliar propostas de alianças</li>
-                <li>Avaliar propostas de callers para DG Avalon e ZvZ</li>
-                <li>Avaliar rent de território</li>
-                <li>Avaliar colocação de HO em mapas</li>
-                <li>Avaliar rent de World Boss</li>
-                <li>Garantir respeito entre toda staff e membros</li>
-            </ul>
-        </div>
-
-        <div class="card">
-            <h3>⚔️ Sub-Líder</h3>
-            <p>SLZXP<br>Kimeruz</p>
-            <p>Funções:</p>
-            <ul>
-                <li>Resolver problemas internos entre a staff</li>
-                <li>Garantir o cumprimento das funções dos cargos inferiores</li>
-                <li>Ajudar com problemas técnicos do Discord</li>
-                <li>Auxiliar na criação de eventos</li>
-                <li>Planejar atualizações da guilda</li>
-            </ul>
-        </div>
-
-        <div class="card">
-            <h3>🛡️ Moderador</h3>
-            <p>Ezlizz</p>
-            <p>Funções:</p>
-            <ul>
-                <li>Resolver conflitos sérios</li>
-                <li>Aplicar avisos, expulsões e banimentos</li>
-                <li>Registrar motivos no chat #admin-chat</li>
-                <li>Manter blacklist atualizada</li>
-                <li>Cobrar e confirmar multas</li>
-            </ul>
-        </div>
-
-        <div class="card">
-            <h3>🛡️ Recrutador</h3>
-            <p>Thalisson69<br>LordMysteriuss<br>K1ra014</p>
-            <p>Funções:</p>
-            <ul>
-                <li>Recrutar novos jogadores</li>
-                <li>Explicar regras e funcionamento da guilda</li>
-                <li>Repassar informações obrigatórias</li>
-            </ul>
-        </div>
+    <div class="hero-content">
+      <p class="hero-eyebrow reveal">Guild Brasileira · Albion Online</p>
+      <h1 class="hero-title reveal">
+        Mais importante que vencer<br />
+        <em>é se divertir.</em>
+      </h1>
+      <p class="hero-sub reveal">
+        Guild brasileira focada em diversão, amizade e conteúdo de qualidade.
+      </p>
+      <div class="hero-actions reveal">
+        <a href="https://discord.gg/VEYfyagztN" target="_blank" rel="noopener" class="btn-primary">⚔ Entrar na Guild</a>
+        <a href="https://discord.gg/VEYfyagztN" target="_blank" rel="noopener" class="btn-ghost">Discord</a>
+      </div>
     </div>
-</section>
 
-<section id="videos" class="section tab-section">
-    <h2>🎬 Vídeos</h2>
-
-    <video controls class="local-video">
-        <source src="videos/clip.mp4" type="video/mp4">
-        Seu navegador não suporta vídeo.
-    </video>
-</section>
-
-<section id="lives" class="section tab-section">
-    <h2>🎥 Lives</h2>
-
-    <div class="card-grid">
-        <div class="card">
-            <h3>Twitch — Ragnar</h3>
-            <a class="btn-secondary" href="#" target="_blank">Assistir</a>
-        </div>
-
-        <div class="card">
-            <h3>YouTube — DieHard</h3>
-            <a class="btn-secondary" href="#" target="_blank">Ver Canal</a>
-        </div>
+    <!-- Scroll hint -->
+    <div class="scroll-hint">
+      <span>↓</span>
     </div>
-</section>
+  </section>
 
-<section id="vendas" class="section tab-section">
-    <h2>💰 Vendas de Baú</h2>
-    <p>Publique o print do baú e seu Discord para contato.</p>
+  <!-- ═══════════════════════════ LEADERSHIP ═══════════════════════════ -->
+  <section class="section" id="leadership">
+    <div class="section-inner">
+      <p class="section-label reveal">Quem nos guia</p>
+      <h2 class="section-title reveal">Liderança</h2>
+      <div class="divider-gold reveal"></div>
 
-    <form id="vendaForm" class="card venda-form" enctype="multipart/form-data">
-        <input type="text" name="discord" placeholder="Seu Discord (ex: Ragnar#0001)" required>
-        <input type="file" name="print" accept="image/*" required>
-        <button class="btn-primary" type="submit">
-            Publicar Baú
-        </button>
-    </form>
-
-    <hr>
-
-    <h3>📜 Últimos Baús Publicados</h3>
-    <div id="bauList" class="card-grid"></div>
-</section>
-
-<section id="discord" class="section tab-section">
-    <h2>🔥 Entre para a DieHard</h2>
-    <p>Comunidade ativa, organizada e sem toxicidade.</p>
-
-    <a class="btn-primary" href="https://discord.gg/55tKDRpbwS" target="_blank">
-        Entrar no Discord
-    </a>
-</section>
-
-</main>
-
-<footer>
-    <p>© DieHard Guild — Feito por <strong>SLZXP</strong></p>
-</footer>
-
-<script>
-function showTab(id) {
-    document.querySelectorAll('.tab-section').forEach(s => s.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
-    window.scrollTo({ top: 300, behavior: 'smooth' });
-}
-</script>
-
-<script>
-document.getElementById("vendaForm").addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const formData = new FormData(e.target);
-    const res = await fetch("/vender", { method: "POST", body: formData });
-    const json = await res.json();
-    if (json.ok) {
-        alert("Baú publicado com sucesso!");
-        carregarBaus();
-        e.target.reset();
-    } else {
-        alert("Erro ao publicar!");
-    }
-});
-
-async function carregarBaus() {
-    const res = await fetch("/vendas");
-    const vendas = await res.json();
-    const area = document.getElementById("bauList");
-    area.innerHTML = "";
-    vendas.forEach(v => {
-        area.innerHTML += `
-            <div class="card">
-                <img src="${v.imagem}" style="width: 100%; border-radius: 8px;">
-                <p><b>Discord:</b> ${v.discord}</p>
-                <a class="btn-secondary" href="https://discord.com/users/${v.discord}" target="_blank">
-                    Chamar no Discord
-                </a>
+      <div class="leader-grid">
+        <!-- Líderes -->
+        <div class="leader-group reveal">
+          <p class="leader-role">Líderes</p>
+          <div class="card-row">
+            <div class="leader-card">
+              <div class="card-glow"></div>
+              <div class="card-crown">👑</div>
+              <h3>Fubuke</h3>
+              <p class="card-tag">Líder</p>
             </div>
-        `;
-    });
-}
-carregarBaus();
-</script>
+            <div class="leader-card">
+              <div class="card-glow"></div>
+              <div class="card-crown">👑</div>
+              <h3>Bigpink666</h3>
+              <p class="card-tag">Líder</p>
+            </div>
+          </div>
+        </div>
 
-<!-- PLAYER DE MÚSICA -->
-<div style="position:fixed;bottom:20px;right:20px;z-index:9999;">
-    <button id="music-btn" style="background:#8b0000;color:white;border:none;padding:12px 20px;border-radius:8px;cursor:pointer;font-family:Inter,sans-serif;font-weight:600;box-shadow:0 4px 6px rgba(0,0,0,0.3);transition:all 0.3s;">
-        ▶ Tocar Hino
-    </button>
-</div>
+        <!-- Co-líderes -->
+        <div class="leader-group reveal">
+          <p class="leader-role">Co-Líderes</p>
+          <div class="card-row">
+            <div class="leader-card co">
+              <div class="card-glow"></div>
+              <div class="card-crown">⭐</div>
+              <h3>Machuada123</h3>
+              <p class="card-tag">Co-Líder</p>
+            </div>
+            <div class="leader-card co">
+              <div class="card-glow"></div>
+              <div class="card-crown">⭐</div>
+              <h3>MEGACHAMA94</h3>
+              <p class="card-tag">Co-Líder</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<audio id="bg-music" loop>
-    <source src="audio/dairard.mp3" type="audio/mpeg">
-    Seu navegador não suporta áudio.
-</audio>
+  <!-- ═══════════════════════════ ACTIVITIES ═══════════════════════════ -->
+  <section class="section section-dark" id="activities">
+    <div class="section-inner">
+      <p class="section-label reveal">O que fazemos</p>
+      <h2 class="section-title reveal">Atividades</h2>
+      <div class="divider-gold reveal"></div>
 
-<script>
-const music = document.getElementById("bg-music");
-const btn = document.getElementById("music-btn");
-music.volume = 0.4;
+      <div class="activity-grid">
+        <div class="activity-card reveal"><span class="act-icon">⚔</span><span class="act-name">PvP Small Scale</span></div>
+        <div class="activity-card reveal"><span class="act-icon">⚔</span><span class="act-name">PvP Medium Scale</span></div>
+        <div class="activity-card reveal"><span class="act-icon">🗡</span><span class="act-name">Ganks</span></div>
+        <div class="activity-card reveal"><span class="act-icon">🐺</span><span class="act-name">Roaming</span></div>
+        <div class="activity-card reveal"><span class="act-icon">🏆</span><span class="act-name">Arenas</span></div>
+        <div class="activity-card reveal"><span class="act-icon">🔥</span><span class="act-name">Hellgates</span></div>
+        <div class="activity-card reveal"><span class="act-icon">👥</span><span class="act-name">PvE em Grupo</span></div>
+        <div class="activity-card reveal"><span class="act-icon">📈</span><span class="act-name">Fame Farm</span></div>
+        <div class="activity-card reveal"><span class="act-icon">💰</span><span class="act-name">Economia</span></div>
+        <div class="activity-card reveal"><span class="act-icon">🌍</span><span class="act-name">Mundo Aberto</span></div>
+      </div>
 
-// Log para debug
-console.log("Audio source:", music.querySelector("source").src);
+      <!-- O que NÃO fazemos -->
+      <div class="not-section reveal">
+        <p class="section-label">O que NÃO fazemos</p>
+        <div class="not-card">
+          <span class="not-icon">❌</span>
+          <div>
+            <h4>Sem ZvZ obrigatório</h4>
+            <p>Nosso foco não é ZvZ. Preferimos conteúdos onde todos possam participar e se divertir sem obrigação.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-btn.addEventListener("click", async () => {
-    try {
-        if (music.paused) {
-            await music.play();
-            btn.textContent = "⏸ Pausar Hino";
-            btn.style.background = "#4a0000";
-            console.log("Música tocando!");
-        } else {
-            music.pause();
-            btn.textContent = "▶ Tocar Hino";
-            btn.style.background = "#8b0000";
-            console.log("Música pausada");
-        }
-    } catch (err) {
-        console.error("Erro ao tocar:", err);
-        alert("Erro: " + err.message);
-    }
-});
+  <!-- ═══════════════════════════ PHILOSOPHY ═══════════════════════════ -->
+  <section class="section section-light" id="philosophy">
+    <div class="section-inner">
+      <p class="section-label reveal">Nossa essência</p>
+      <h2 class="section-title reveal">Filosofia</h2>
+      <div class="divider-gold reveal"></div>
 
-// Verificar se o arquivo existe
-fetch("audio/dairard.mp3")
-    .then(r => console.log("Arquivo encontrado:", r.status))
-    .catch(e => console.error("Arquivo não encontrado:", e));
-</script>
+      <div class="philosophy-block reveal">
+        <div class="philo-rune">✦</div>
+        <p>
+          Na <strong>Meu Mamute Favorito</strong> acreditamos que Albion Online é mais divertido quando jogado entre amigos.
+        </p>
+        <p>
+          Não buscamos números gigantes nem obrigações excessivas.
+          Nosso objetivo é criar uma comunidade ativa, organizada e divertida para todos.
+        </p>
+        <p>
+          Se você procura um ambiente leve, respeitoso e cheio de conteúdo, <em>seu lugar é aqui.</em>
+        </p>
+        <div class="philo-rune">✦</div>
+      </div>
+    </div>
+  </section>
 
+  <!-- ═══════════════════════════ DIFFERENTIALS ═══════════════════════════ -->
+  <section class="section" id="differentials">
+    <div class="section-inner">
+      <p class="section-label reveal">Por que nos escolher</p>
+      <h2 class="section-title reveal">Diferenciais</h2>
+      <div class="divider-gold reveal"></div>
+
+      <div class="diff-grid">
+        <div class="diff-card reveal">✔ Guild brasileira</div>
+        <div class="diff-card reveal">✔ Ambiente amigável</div>
+        <div class="diff-card reveal">✔ Sem cobrança exagerada</div>
+        <div class="diff-card reveal">✔ Conteúdo diário</div>
+        <div class="diff-card reveal">✔ Economia em grupo</div>
+        <div class="diff-card reveal">✔ PvE</div>
+        <div class="diff-card reveal">✔ PvP</div>
+        <div class="diff-card reveal">✔ Roads of Avalon</div>
+        <div class="diff-card reveal">✔ Ganks</div>
+        <div class="diff-card reveal">✔ Fame Farm</div>
+        <div class="diff-card reveal">✔ Novatos bem-vindos</div>
+        <div class="diff-card reveal">✔ Diversão acima de tudo</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ CTA ═══════════════════════════ -->
+  <section class="section-cta" id="cta">
+    <div class="cta-glow-bg"></div>
+    <div class="section-inner cta-inner">
+      <div class="rune-line reveal"></div>
+      <h2 class="cta-title reveal">Pronto para encontrar<br />seu Mamute Favorito?</h2>
+      <p class="cta-sub reveal">Junte-se à nossa comunidade e viva Albion do jeito certo.</p>
+      <a href="https://discord.gg/VEYfyagztN" target="_blank" rel="noopener" class="btn-primary btn-large reveal">⟁ Entrar no Discord</a>
+      <div class="rune-line reveal"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ FOOTER ═══════════════════════════ -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <span class="logo-rune">⟁</span>
+      <p class="footer-name">Meu Mamute Favorito</p>
+      <p class="footer-sub">Albion Online Guild</p>
+      <p class="footer-copy">© 2026 · Todos os direitos reservados</p>
+      <p class="footer-disclaimer">Este site não é afiliado à Sandbox Interactive GmbH.</p>
+    </div>
+  </footer>
+
+  <!-- Back to top -->
+  <button class="back-top" id="backTop" aria-label="Voltar ao topo">↑</button>
+
+  <script src="script.js"></script>
 </body>
 </html>
